@@ -1,0 +1,12 @@
+import mongoose from "mongoose";
+
+const connetToDB = async () => {
+
+    mongoose.connection.on('connected', () => {
+        console.log("Database Connected")
+    })
+
+    await mongoose.connect(`${process.env.MONGODB_URI}/pixora`);
+}
+
+export default connetToDB;
