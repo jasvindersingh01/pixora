@@ -37,6 +37,7 @@ export default function AppContextProvider(props) {
 
     const logout = () => {
         localStorage.removeItem("token");
+        navigate("/")
         setToken("")
         setUser(null);
     }

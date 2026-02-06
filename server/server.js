@@ -9,7 +9,12 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://pixora-app.vercel.app"
+  ],
+  credentials: true
+}));
 await connetToDB();
 
 app.use("/api/user", userRouter);
