@@ -13,8 +13,12 @@ export default function GenerateImage() {
   const inputRef = useRef(null)
 
   useEffect(() => {
+  const t = setTimeout(() => {
     inputRef.current?.focus();
-  }, []);
+  }, 300); 
+
+  return () => clearTimeout(t);
+}, []);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault()
