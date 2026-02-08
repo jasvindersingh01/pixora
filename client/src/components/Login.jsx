@@ -4,6 +4,7 @@ import { AppContext } from "../context/AppContext";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
 
@@ -15,6 +16,7 @@ export default function Login() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -137,12 +139,22 @@ export default function Login() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.3 }}
-                    className="border px-6 py-2 flex items-center gap-2 rounded-full mt-4"
+                    className=" relative border px-6 py-2 flex items-center gap-2 rounded-full mt-4"
                 >
                     <svg width="16" height="16" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13 8.5c0-.938-.729-1.7-1.625-1.7h-.812V4.25C10.563 1.907 8.74 0 6.5 0S2.438 1.907 2.438 4.25V6.8h-.813C.729 6.8 0 7.562 0 8.5v6.8c0 .938.729 1.7 1.625 1.7h9.75c.896 0 1.625-.762 1.625-1.7zM4.063 4.25c0-1.406 1.093-2.55 2.437-2.55s2.438 1.144 2.438 2.55V6.8H4.061z" fill="#6B7280" />
                     </svg>
-                    <input onChange={e => setPassword(e.target.value)} value={password} type="password" className="outline-none text-sm" placeholder="Password" required />
+                    <input onChange={e => setPassword(e.target.value)} value={password}
+                        type={showPassword ? "text" : "password"}
+                        className="outline-none text-sm" placeholder="Password" required />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 transition"
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                 </motion.div>
 
                 <motion.p
@@ -158,8 +170,8 @@ export default function Login() {
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.95 }}
                     className={`w-full text-white py-2 rounded-full transition ${loading
-                            ? "bg-gray-600 cursor-not-allowed"
-                            : "bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 hover:opacity-90 cursor-pointer"
+                        ? "bg-gray-600 cursor-not-allowed"
+                        : "bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 hover:opacity-90 cursor-pointer"
                         }`}
 
                 >
