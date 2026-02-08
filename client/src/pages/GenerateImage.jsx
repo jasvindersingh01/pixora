@@ -8,17 +8,17 @@ export default function GenerateImage() {
   const [image, setImage] = useState(assets.img1);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [input, setInput] = useState(" ")
+  const [input, setInput] = useState("")
   const { generateImage } = useContext(AppContext);
   const inputRef = useRef(null)
 
   useEffect(() => {
-  const t = setTimeout(() => {
-    inputRef.current?.focus();
-  }, 300); 
+    const t = setTimeout(() => {
+      inputRef.current?.focus();
+    }, 150);
 
-  return () => clearTimeout(t);
-}, []);
+    return () => clearTimeout(t);
+  }, []);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault()
@@ -94,7 +94,8 @@ export default function GenerateImage() {
             value={input}
             type="text"
             placeholder="Describe the image you want to generate…"
-            className="flex-1 bg-transparent outline-none px-4 py-3 text-gray-800 placeholder-gray-400"
+            className="flex-1 bg-transparent outline-none px-4 py-3 text-gray-900
+           placeholder-gray-500 focus:placeholder-gray-600"
           />
 
           <motion.button
